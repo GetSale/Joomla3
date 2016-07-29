@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="system" method="upgrade">
+    <name>getSale</name>
+    <author>getSale Team</author>
+    <creationDate>07.2016</creationDate>
+    <copyright>(C) 2016 by getsale.io team (http://getsale.io)</copyright>
+    <license>GNU/GPL: http://www.gnu.org/copyleft/gpl.html</license>
+    <authorEmail>plugins@getsale.io</authorEmail>
+    <authorUrl>http://getsale.io</authorUrl>
+    <version>1.0.0</version>
+    <description>
+        <![CDATA[
+<link rel="stylesheet" type="text/css" href="/plugins/system/getsale/style.css">
+<script src="/plugins/system/getsale/main.js"> </script>
+<div id="before_install" style="display:none;">
+Плагин getSale успешно установлен!
+
+Для начала работы плагина необходимо ввести Email и Ключ API, полученный в личном кабинете на сайте <a href="http://getsale.io">getSale.io</a>
+</div>]]>
+    </description>
+    <languages folder="language">
+        <language tag="ru-RU">ru-RU/ru-RU.plg_system_getsale.ini</language>
+        <language tag="ru-RU">ru-RU/ru-RU.plg_system_getsale.sys.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_system_getsale.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_system_getsale.sys.ini</language>
+    </languages>
+    <files>
+        <filename plugin="getsale">getsale.php</filename>
+        <filename>index.html</filename>
+        <filename>style.css</filename>
+        <filename>ok.png</filename>
+        <filename>main.js</filename>
+        <filename>log.txt</filename>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                        name="getsale_id"
+                        type="hidden"
+                        default=""/>
+                <field
+                        name="email"
+                        type="text"
+                        default=""
+                        label="PLG_GETSALE_EMAIL"
+                        description="PLG_GETSALE_EMAIL_DESC"/>
+                <field
+                        name="app_key"
+                        type="text"
+                        default=""
+                        label="PLG_GETSALE_APP_KEY"
+                        description="PLG_GETSALE_APP_KEY_DESC"/>
+            </fieldset>
+        </fields>
+    </config>
+    <updateservers>
+        <server type="extension" priority="1" name="getSale">
+            http://getsale.ru/
+        </server>
+    </updateservers>
+</extension>

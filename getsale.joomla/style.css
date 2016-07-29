@@ -1,0 +1,9 @@
+span.gtsl_err {
+    color:red;
+}
+img.gtsl_ok {
+    margin-left: 5px;
+}
+#gtsl_auth_btn {
+   /* margin-top: 20px;*/
+}
