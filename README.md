@@ -38,7 +38,7 @@ License: GNU General Public License, version 3
 
 Здесь задаются:
 
-**Ключ API:** необходимо указать ключ API, полученный в ЛК [getSale](http://getsale.io);
+**Ключ API:** необходимо указать ключ API, полученный в ЛК [getSale](http://getsale.io);  
 **email:** необходимо указать email зарегистрированный в системе [getSale](http://getsale.io).  
 
 ## Изменения
