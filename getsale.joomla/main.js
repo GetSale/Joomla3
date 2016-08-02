@@ -19,7 +19,7 @@ jQuery(document).ready(function () {
     var text_after = "Введите Email и ключ API из личного кабинета GetSale.<br>" +
         "Если вы еще не регистрировались в сервисе GetSale это можно сделать по ссылке <a href='http://getsale.io'>GetSale</a>";
     var support_text = "<br><br>Служба поддержки: <a href='mailto:support@getsale.io'>support@getsale.io</a><br>Joomla GetSale v1.0.0";
-    var success_text = "Поздравляем! Ваш сайт успешно привязан к аккаунту <a href='http://getsale.io'>GetSale</a>.<br/>" + "Теперь вы можете создать виджеты в личном кабинете на http://getsale.io.";
+    var success_text = "Поздравляем! Ваш сайт успешно привязан к аккаунту <a href='http://getsale.io'>GetSale</a>.<br/>" + "Теперь вы можете создать виджеты в личном кабинете на <a href='http://getsale.io'>http://getsale.io</a>.";
 
     if ((jQuery('#jform_params_app_key').val() !== '') && (jQuery('#jform_params_email').val() !== '')) {
         if (window.getsale_succes_reg == true && jQuery('#jform_params_getsale_id').val() !== '') {
