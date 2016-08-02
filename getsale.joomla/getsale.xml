@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.0" type="plugin" group="system" method="upgrade">
-    <name>getSale</name>
-    <author>getSale Team</author>
-    <creationDate>07.2016</creationDate>
-    <copyright>(C) 2016 by getsale.io team (http://getsale.io)</copyright>
+    <name>GetSale</name>
+    <author>GetSale Team</author>
+    <creationDate>02.08.2015</creationDate>
+    <copyright>(C) 2016 by GetSale Team (http://getsale.io)</copyright>
     <license>GNU/GPL: http://www.gnu.org/copyleft/gpl.html</license>
-    <authorEmail>plugins@getsale.io</authorEmail>
+    <authorEmail>support@getsale.io</authorEmail>
     <authorUrl>http://getsale.io</authorUrl>
     <version>1.0.0</version>
     <description>
@@ -13,9 +13,9 @@
 <link rel="stylesheet" type="text/css" href="/plugins/system/getsale/style.css">
 <script src="/plugins/system/getsale/main.js"> </script>
 <div id="before_install" style="display:none;">
-Плагин getSale успешно установлен!
+Плагин GetSale успешно установлен!
 
-Для начала работы плагина необходимо ввести Email и Ключ API, полученный в личном кабинете на сайте <a href="http://getsale.io">getSale.io</a>
+Для начала работы плагина необходимо ввести Email и Ключ API, полученный в личном кабинете на сайте <a href="http://getsale.io">GetSale</a>
 </div>]]>
     </description>
     <languages folder="language">
@@ -55,8 +55,8 @@
         </fields>
     </config>
     <updateservers>
-        <server type="extension" priority="1" name="getSale">
-            http://getsale.ru/
+        <server type="extension" priority="1" name="GetSale">
+            http://getsale.io/
         </server>
     </updateservers>
 </extension>
