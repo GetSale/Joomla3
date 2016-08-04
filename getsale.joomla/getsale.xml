@@ -3,10 +3,10 @@
     <name>GetSale</name>
     <author>GetSale Team</author>
     <creationDate>02.08.2015</creationDate>
-    <copyright>(C) 2016 by GetSale Team (http://getsale.io)</copyright>
+    <copyright>(C) 2016 by GetSale Team (https://getsale.io)</copyright>
     <license>GNU/GPL: http://www.gnu.org/copyleft/gpl.html</license>
     <authorEmail>support@getsale.io</authorEmail>
-    <authorUrl>http://getsale.io</authorUrl>
+    <authorUrl>https://getsale.io</authorUrl>
     <version>1.0.0</version>
     <description>
         <![CDATA[
@@ -15,7 +15,7 @@
 <div id="before_install" style="display:none;">
 Плагин GetSale успешно установлен!
 
-Для начала работы плагина необходимо ввести Email и Ключ API, полученный в личном кабинете на сайте <a href="http://getsale.io">GetSale</a>
+Для начала работы плагина необходимо ввести Email и Ключ API, полученный в личном кабинете на сайте <a href="https://getsale.io">GetSale</a>
 </div>]]>
     </description>
     <languages folder="language">
@@ -56,7 +56,7 @@
     </config>
     <updateservers>
         <server type="extension" priority="1" name="GetSale">
-            http://getsale.io/
+            https://getsale.io/
         </server>
     </updateservers>
 </extension>

@@ -19,8 +19,8 @@ class plgSystemGetsale extends JPlugin
     public $url = '';
     public $projectId = '';
     public $error = '';
-    public $regDomain = 'http://edge.getsale.io/';
-    public $rtDomain = "//rt.edge.getsale.io/loader.js";
+    public $regDomain = 'https://.getsale.io/';
+    public $rtDomain = "//rt.getsale.io/loader.js";
     public $int_scrpt = '';
     public $VMAddToCartSelector = 'input.addtocart-button';
     public $VMSuccessOrderSelector = 'button#checkoutFormSubmit';
