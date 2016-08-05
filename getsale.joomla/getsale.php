@@ -202,7 +202,7 @@ EOD;
 
         //check and try to reg
         if (($this->email !== '') && ($this->app_key !== '') && empty($this->projectId)) {
-            $id = $this->regbyApi();
+            $id = $this->getsale_reg();
             if (isset($id->payload->projectId)) {
                 $this->projectId = $id->payload->projectId;
                 $this->params->set('getsale_id', $id->payload->projectId);
@@ -320,7 +320,7 @@ EOD;
         $this->virtuemartSubmitCart($cart);
     }
 
-    public function regbyApi()
+    public function getsale_reg()
     {
         $domain = $this->regDomain;
         $email = $this->email;
