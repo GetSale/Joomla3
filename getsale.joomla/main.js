@@ -16,7 +16,7 @@ function formCheck() {
 jQuery(document).ready(function () {
     jQuery('a[href="#description"]').hide();
 
-    var text_after = "Введите Email и ключ API из личного кабинета <a href='https://getsale.io' target='_blank'>GetSale</a>.<br>" +
+    var text_after = "Введите Email и ключ API из личного кабинета <a href='https://getsale.io' target='_blank'>GetSale</a><br>" +
         "Если вы еще не регистрировались в сервисе GetSale это можно сделать по ссылке <a href='https://getsale.io' target='_blank'>GetSale</a>";
     var support_text = '' + '<br><br>Служба поддержки: <a href="mailto:support@getsale.io">support@getsale.io</a><br>Joomla GetSale v1.0.0';
     var success_text = 'Поздравляем! Ваш сайт успешно привязан к аккаунту <a href="https://getsale.io">GetSale</a>.<br/>' + 'Теперь вы можете создать виджеты в личном кабинете на <a href="https://getsale.io">GetSale</a>.';
