@@ -13,6 +13,7 @@ function formCheck() {
     }
 }
 
+(function () {
 jQuery(document).ready(function () {
     jQuery('a[href="#description"]').hide();
 
@@ -90,4 +91,4 @@ if (jQuery("p.alert-message:contains('Учётная запись для вас 
         });
     })(window, 'getSaleCallbacks');
 }
-
+})();
