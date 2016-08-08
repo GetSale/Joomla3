@@ -104,7 +104,6 @@ jQuery(document).ready(function () {
     //add to cart
     //add to cart at view item page
     jQuery("a.btn.btn-success.button_buy").each(function () {
-//        var my_funct = "getSale.event('add-to-cart'); console.log('add-to-cart');";
         var my_funct = "document.cookie = \"GETSALE_ADD=Y; path=/;\";";
         if (jQuery(this).attr('onclick')) {
             jQuery(this).attr('onclick', my_funct + jQuery(this).attr('onclick'));
@@ -202,6 +201,23 @@ jQuery(document).ready(function () {
         } else jQuery(this).attr('onclick', my_funct);
     })
 });
+
+function getCookie(name) {
+    var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([.$?*|{}()[]\/+^])/g, '\$1') + "=([^;]*)"));
+    return matches ? decodeURIComponent(matches[1]) : 'N';
+}
+
+var getsale_add = getCookie('GETSALE_ADD');
+if (getsale_add && getsale_add == 'Y') {
+    (function (w, c) {
+        w[c] = w[c] || [];
+        w[c].push(function (getSale) {
+            getSale.event('add-to-cart');
+            console.log('add-to-cart');
+        });
+    })(window, 'getSaleCallbacks');
+    document.cookie = 'GETSALE_ADD=N; path=/;';
+}
 /* GETSALE CODE END */
 EOD;
 
@@ -291,24 +307,7 @@ EOD;
                   if (w.opera == "[object Opera]") {
                     d.addEventListener("DOMContentLoaded", f, false);
                   } else { f(); }
-                })(document, window, "getSaleInit");
-
-                function getCookie(name) {
-                    var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([.$?*|{}()[]\/+^])/g, \'\$1\') + "=([^;]*)"));
-                    return matches ? decodeURIComponent(matches[1]) : \'N\';
-                }
-
-                var getsale_add = getCookie(\'GETSALE_ADD\');
-                if (getsale_add && getsale_add == \'Y\') {
-                    (function (w, c) {
-                        w[c] = w[c] || [];
-                        w[c].push(function (getSale) {
-                            getSale.event(\'add-to-cart\');
-                            console.log(\'add-to-cart\');
-                        });
-                    })(window, \'getSaleCallbacks\');
-                    document.cookie = \'GETSALE_ADD=N; path=/;\';
-                }' . $this->int_scrpt;
+                })(document, window, "getSaleInit");' . $this->int_scrpt;
         } else return;
     }
 
