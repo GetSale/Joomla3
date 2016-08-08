@@ -111,7 +111,7 @@ jQuery(document).ready(function () {
     });
 
     jQuery('.prod_buttons input.btn.btn-primary.button').each(function () {
-        var my_funct = "getSale.event('add-to-cart'); console.log('add-to-cart');";
+        var my_funct = "document.cookie = \"GETSALE_ADD=Y; path=/;\";";
         if (jQuery(this).attr('onclick')) {
             jQuery(this).attr('onclick', my_funct + jQuery(this).attr('onclick'));
         } else jQuery(this).attr('onclick', my_funct);
@@ -202,12 +202,12 @@ jQuery(document).ready(function () {
     })
 });
 
-function getCookie(name) {
+function getsalegetCookie(name) {
     var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([.$?*|{}()[]\/+^])/g, '\$1') + "=([^;]*)"));
     return matches ? decodeURIComponent(matches[1]) : 'N';
 }
 
-var getsale_add = getCookie('GETSALE_ADD');
+var getsale_add = getsalegetCookie('GETSALE_ADD');
 if (getsale_add && getsale_add == 'Y') {
     (function (w, c) {
         w[c] = w[c] || [];
