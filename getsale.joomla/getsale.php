@@ -12,8 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 jimport('joomla.plugin.plugin');
 
-class plgSystemGetsale extends JPlugin
-{
+class plgSystemGetsale extends JPlugin {
     public $app_key = '';
     public $email = '';
     public $url = '';
@@ -28,163 +27,185 @@ class plgSystemGetsale extends JPlugin
     public $VMDelFromCartSelector = '.vm2-remove_from_cart';
     public $VMCatViewSelector = 'div.category-view';
     public $jsCode2 = <<<EOD
-jQuery(document).ready(function(){
+jQuery(document).ready(function () {
     //hikashop
-        //////cat-view
-              if (jQuery('body.com_hikashop.view-category').length) {
-                           (function(w, c) {
-                    w[c] = w[c] || [];
-                    w[c].push(function(getSale) {
-                        getSale.event('cat-view');
-                    });
-                })(window, 'getSaleCallbacks');
-            }
-        //////item-view
-              if (jQuery('body.com_hikashop.view-product').length) {
-                            (function(w, c) {
-                w[c] = w[c] || [];
-                w[c].push(function(getSale) {
-
-                getSale.event('item-view')
-                    });
-                })(window, 'getSaleCallbacks');
-            }
-        //////add to cart
-            jQuery("input.button.hikashop_cart_input_button[name=add]").each(function() {
-                var my_funct = " getSale.event('add-to-cart');";
-            jQuery(this).attr('onclick',my_funct+jQuery(this).attr('onclick'));
-            })
-        /////del from cart
-
-            jQuery(".hikashop_cart_product_quantity_delete").each(function() {
-                var my_funct = " getSale.event('del-from-cart');";
-            jQuery(this).attr('onclick',my_funct+jQuery(this).attr('onclick'));
-            })
-         /////order_finish
-           if (jQuery('span#hikashop_purchaseorder_end_message').length) {
-
-            (function(w, c) {
-                w[c] = w[c] || [];
-                w[c].push(function(getSale) {
-
-                getSale.event('success-order')
-                    });
-                })(window, 'getSaleCallbacks');
-            }
-        ////user_reg
-            jQuery("input.button.hikashop_cart_input_button[name=register]").each(function() {
-                var my_funct = "getSale.event('user-reg');";
-                jQuery(this).attr('onclick',my_funct+jQuery(this).attr('onclick'));
-            })
-
+    //////cat-view
+    if (jQuery('body.com_hikashop.view-category').length) {
+        (function (w, c) {
+            w[c] = w[c] || [];
+            w[c].push(function (getSale) {
+                getSale.event('cat-view');
+                console.log('cat-view');
+            });
+        })(window, 'getSaleCallbacks');
+    }
+    //////item-view
+    if (jQuery('body.com_hikashop.view-product').length) {
+        (function (w, c) {
+            w[c] = w[c] || [];
+            w[c].push(function (getSale) {
+                getSale.event('item-view');
+                console.log('item-view');
+            });
+        })(window, 'getSaleCallbacks');
+    }
+    //////add to cart
+    jQuery("input.button.hikashop_cart_input_button[name=add]").each(function () {
+        var my_funct = "getSale.event('add-to-cart'); console.log('add-to-cart');";
+        if (jQuery(this).attr('onclick')) {
+            jQuery(this).attr('onclick', my_funct + jQuery(this).attr('onclick'));
+        } else jQuery(this).attr('onclick', my_funct);
+    });
+    /////del from cart
+    jQuery(".hikashop_cart_product_quantity_delete").each(function () {
+        var my_funct = "getSale.event('del-from-cart'); console.log('del-from-cart');";
+        if (jQuery(this).attr('onclick')) {
+            jQuery(this).attr('onclick', my_funct + jQuery(this).attr('onclick'));
+        } else jQuery(this).attr('onclick', my_funct);
+    });
+    /////order_finish
+    if (jQuery('span#hikashop_purchaseorder_end_message').length) {
+        (function (w, c) {
+            w[c] = w[c] || [];
+            w[c].push(function (getSale) {
+                getSale.event('success-order');
+                console.log('success-order');
+            });
+        })(window, 'getSaleCallbacks');
+    }
+    ////user_reg
+    jQuery("input.button.hikashop_cart_input_button[name=register]").each(function () {
+        var my_funct = "getSale.event('user-reg'); console.log('user-reg');";
+        if (jQuery(this).attr('onclick')) {
+            jQuery(this).attr('onclick', my_funct + jQuery(this).attr('onclick'));
+        } else jQuery(this).attr('onclick', my_funct);
+    });
     //joomshopping
-        //////view-cat
-        if (jQuery('div.jshop_list_category').length) {
+    //////view-cat
+    if (jQuery('div.jshop_list_category').length) {
+        (function (w, c) {
+            w[c] = w[c] || [];
+            w[c].push(function (getSale) {
+                getSale.event('cat-view');
+                console.log('cat-view');
+            });
+        })(window, 'getSaleCallbacks');
+    }
+    //item-view
+    if (jQuery('div.jshop.productfull').length) {
+        (function (w, c) {
+            w[c] = w[c] || [];
+            w[c].push(function (getSale) {
+                getSale.event('item-view');
+                console.log('item-view');
+            });
+        })(window, 'getSaleCallbacks');
+    }
+    //add to cart
+    //add to cart at view item page
+    jQuery("a.btn.btn-success.button_buy").each(function () {
+//        var my_funct = "getSale.event('add-to-cart'); console.log('add-to-cart');";
+        var my_funct = "document.cookie = \"GETSALE_ADD=Y; path=/;\";";
+        if (jQuery(this).attr('onclick')) {
+            jQuery(this).attr('onclick', my_funct + jQuery(this).attr('onclick'));
+        } else jQuery(this).attr('onclick', my_funct);
+    });
 
-                        (function(w, c) {
-                    w[c] = w[c] || [];
-                    w[c].push(function(getSale) {
-                        getSale.event('cat-view');
-                    });
-                })(window, 'getSaleCallbacks');
-        }
+    jQuery('.prod_buttons input.btn.btn-primary.button').each(function () {
+        var my_funct = "getSale.event('add-to-cart'); console.log('add-to-cart');";
+        if (jQuery(this).attr('onclick')) {
+            jQuery(this).attr('onclick', my_funct + jQuery(this).attr('onclick'));
+        } else jQuery(this).attr('onclick', my_funct);
+    });
 
-        //item-view
-        if (jQuery('div.jshop.productfull').length) {
-            (function(w, c) {
-                w[c] = w[c] || [];
-                w[c].push(function(getSale) {
+    jQuery("a[href*='/cart/delete']").each(function () {
+        var my_funct = "getSale.event('del-from-cart'); console.log('del-from-cart');";
+        if (jQuery(this).attr('onclick')) {
+            jQuery(this).attr('onclick', my_funct + jQuery(this).attr('onclick'));
+        } else jQuery(this).attr('onclick', my_funct);
+    });
 
-                getSale.event('item-view')
-                    });
-            })(window, 'getSaleCallbacks');
-        }
-        //add to cart
-        //add to cart at view item page
-        jQuery("a.btn.btn-success.button_buy").each(function() {
-            var my_funct = " getSale.event('add-to-cart');";
-        jQuery(this).attr('onclick',my_funct+jQuery(this).attr('onclick'));
-        })
+    jQuery("a[href*='/korzina/delete']").each(function () {
+        var my_funct = "getSale.event('del-from-cart'); console.log('del-from-cart');";
+        if (jQuery(this).attr('onclick')) {
+            jQuery(this).attr('onclick', my_funct + jQuery(this).attr('onclick'));
+        } else jQuery(this).attr('onclick', my_funct);
+    });
+    //user reg
+    if (jQuery("p.alert-message:contains('Учётная запись для вас была создана')").length) {
+        (function (w, c) {
+            w[c] = w[c] || [];
+            w[c].push(function (getSale) {
+                getSale.event('user-reg');
+                console.log('user-reg');
+            });
+        })(window, 'getSaleCallbacks');
+    }
+    //order_finish
+    jQuery("input[name='finish_registration']").each(function () {
+        var my_funct = "getSale.event('success-order'); console.log('success-order');";
 
-        jQuery('.prod_buttons input.btn.btn-primary.button').each(function() {
-            var my_funct = " getSale.event('add-to-cart');";
-        jQuery(this).attr('onclick',my_funct+jQuery(this).attr('onclick'));
-        })
-
-        jQuery("a[href*='/cart/delete']").each(function() {
-            var my_funct = " getSale.event('del-from-cart');";
-        jQuery(this).attr('onclick',my_funct+jQuery(this).attr('onclick'));
-        })
-
-        jQuery("a[href*='/korzina/delete']").each(function() {
-            var my_funct = " getSale.event('del-from-cart');";
-        jQuery(this).attr('onclick',my_funct+jQuery(this).attr('onclick'));
-        })
-
-        //user reg
-        if (jQuery("p.alert-message:contains('Учётная запись для вас была создана')").length) {
-            (function(w, c) {
-                w[c] = w[c] || [];
-                w[c].push(function(getSale) {
-                    getSale.event('user-reg');
-                });
-
-            })(window, 'getSaleCallbacks');
-        }
-        //order_finish
-
-        jQuery("input[name='finish_registration']").each(function() {
-            var my_funct = " getSale.event('success-order');";
-        jQuery(this).attr('onclick',my_funct+jQuery(this).attr('onclick'));
-        })
+        if (jQuery(this).attr('onclick')) {
+            jQuery(this).attr('onclick', my_funct + jQuery(this).attr('onclick'));
+        } else jQuery(this).attr('onclick', my_funct);
+    });
 
     //virtuemart
-          jQuery('input.addtocart-button').click(function(){
-            getSale.event('add-to-cart');
-          });
-          jQuery('.vm2-remove_from_cart').click(function(){
-            getSale.event('del-from-cart');
-          });
+    jQuery('input.addtocart-button').click(function () {
+        getSale.event('add-to-cart');
+        console.log('add-to-cart');
+    });
+    jQuery('.vm2-remove_from_cart').click(function () {
+        getSale.event('del-from-cart');
+        console.log('del-from-cart');
+    });
 
-            jQuery('button#checkoutFormSubmit[name=confirm]').each(function() {
-                var my_funct = "getSale.event('success-order');";
-            jQuery(this).attr('onclick',my_funct+jQuery(this).attr('onclick'));
-            })
+    jQuery('button#checkoutFormSubmit[name=confirm]').each(function () {
+        var my_funct = "getSale.event('success-order'); console.log('success-order');";
+        if (jQuery(this).attr('onclick')) {
+            jQuery(this).attr('onclick', my_funct + jQuery(this).attr('onclick'));
+        } else jQuery(this).attr('onclick', my_funct);
+    });
 
-            if (jQuery('body.com_virtuemart.view-productdetails').length) {
+    if (jQuery('body.com_virtuemart.view-productdetails').length) {
+        (function (w, c) {
+            w[c] = w[c] || [];
+            w[c].push(function (getSale) {
+                getSale.event('item-view');
+                console.log('item-view');
+            });
+        })(window, 'getSaleCallbacks');
+    }
 
-                (function(w, c) {
-                    w[c] = w[c] || [];
-                    w[c].push(function(getSale) {
-                        getSale.event('item-view');
-                    });
-                })(window, 'getSaleCallbacks');
-            };
+    if (jQuery('div.category-view').length) {
 
-            if (jQuery('div.category-view').length) {
+        (function (w, c) {
+            w[c] = w[c] || [];
+            w[c].push(function (getSale) {
+                getSale.event('cat-view');
+                console.log('cat-view');
+            });
+        })(window, 'getSaleCallbacks');
+    }
+    //user reg
+    jQuery("button[name=save]").each(function () {
+        var my_funct = "getSale.event('user-reg'); console.log('user-reg');";
+        if (jQuery(this).attr('onclick')) {
+            jQuery(this).attr('onclick', my_funct + jQuery(this).attr('onclick'));
+        } else jQuery(this).attr('onclick', my_funct);
+    });
 
-                (function(w, c) {
-                    w[c] = w[c] || [];
-                    w[c].push(function(getSale) {
-                        getSale.event('cat-view');
-                    });
-                })(window, 'getSaleCallbacks');
-            };
-
-        //user reg
-            jQuery("button[name=save]").each(function() {
-                var my_funct = "getSale.event('user-reg');";
-            jQuery(this).attr('onclick',my_funct+jQuery(this).attr('onclick'));
-        })
-        jQuery("button[name=register]").each(function() {
-            var my_funct = "getSale.event('user-reg');";
-        jQuery(this).attr('onclick',my_funct+jQuery(this).attr('onclick'));
-        })
-})
+    jQuery("button[name=register]").each(function () {
+        var my_funct = "getSale.event('user-reg'); console.log('user-reg');";
+        if (jQuery(this).attr('onclick')) {
+            jQuery(this).attr('onclick', my_funct + jQuery(this).attr('onclick'));
+        } else jQuery(this).attr('onclick', my_funct);
+    })
+});
+/* GETSALE CODE END */
 EOD;
 
-    public function __construct(& $subject, $config)
-    {
+    public function __construct(& $subject, $config) {
         parent::__construct($subject, $config);
 
         if (!function_exists('curl_init')) {
@@ -197,7 +218,7 @@ EOD;
         $this->isAdmin = JFactory::getApplication()->isAdmin();
         $this->app_key = $this->params->get('app_key', '');
         $this->email = $this->params->get('email', '');
-        $this->projectId = $this->params->get('getsale_id','');
+        $this->projectId = $this->params->get('getsale_id', '');
         $this->url = $this->currentUrl();
 
         //check and try to reg
@@ -231,8 +252,7 @@ EOD;
     /**
      * Возвращает url
      */
-    public function currentUrl()
-    {
+    public function currentUrl() {
         $url = 'http';
         if (isset($_SERVER['HTTPS'])) {
             if ($_SERVER['HTTPS'] == 'on') {
@@ -251,8 +271,7 @@ EOD;
     /** Main script
      * @throws Exception
      */
-    public function getjsCode()
-    {
+    public function getjsCode() {
 
         if ((strlen($this->projectId) > 0) && (!$this->isAdmin)) {
             return '
@@ -274,35 +293,45 @@ EOD;
                   } else { f(); }
                 })(document, window, "getSaleInit");
 
-               /* GETSALE CODE END */
-        ' . $this->int_scrpt;
+                function getCookie(name) {
+                    var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([.$?*|{}()[]\/+^])/g, \'\$1\') + "=([^;]*)"));
+                    return matches ? decodeURIComponent(matches[1]) : \'N\';
+                }
+
+                var getsale_add = getCookie(\'GETSALE_ADD\');
+                if (getsale_add && getsale_add == \'Y\') {
+                    (function (w, c) {
+                        w[c] = w[c] || [];
+                        w[c].push(function (getSale) {
+                            getSale.event(\'add-to-cart\');
+                            console.log(\'add-to-cart\');
+                        });
+                    })(window, \'getSaleCallbacks\');
+                    document.cookie = \'GETSALE_ADD=N; path=/;\';
+                }' . $this->int_scrpt;
         } else return;
     }
 
-    public function onBeforeRender()
-    {
+    public function onBeforeRender() {
     }
 
-    public function onContentPrepare($context, &$article, &$params, $page = 0)
-    {
+    public function onContentPrepare($context, &$article, &$params, $page = 0) {
     }
 
-    public function onContentBeforeDisplay($context, &$product, &$params, $page = 0)
-    {
-        if ($context != 'com_virtuemart.productdetails')
-            return;
+    public function onContentBeforeDisplay($context, &$product, &$params, $page = 0) {
+        if ($context != 'com_virtuemart.productdetails') return;
 
         $this->productView();
     }
 
-    private function productView()
-    {
+    private function productView() {
         if (!empty($this->projectId)) {
             $int_scrpt = "jQuery(document).ready(function(){
                             (function(w, c) {
                                 w[c] = w[c] || [];
                                 w[c].push(function(getSale) {
-                                    getSale.event('item-view')
+                                    getSale.event('item-view');
+                                    console.log('item-view');
                                 });
                             })(window, 'getsaleCallbacks');
                           })";
@@ -315,13 +344,11 @@ EOD;
      *
      * @param $cart
      */
-    public function plgVmOnAddToCart($cart)
-    {
+    public function plgVmOnAddToCart($cart) {
         $this->virtuemartSubmitCart($cart);
     }
 
-    public function getsale_reg()
-    {
+    public function getsale_reg() {
         $domain = $this->regDomain;
         $email = $this->email;
         $key = $this->app_key;
@@ -333,11 +360,7 @@ EOD;
         }
 
         $ch = curl_init();
-        $jsondata = json_encode(array(
-            'email' => $email,
-            'key' => $key,
-            'url' => $url,
-            'cms' => 'joomla'));
+        $jsondata = json_encode(array('email' => $email, 'key' => $key, 'url' => $url, 'cms' => 'joomla'));
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json', 'Accept: application/json'));
         curl_setopt($ch, CURLOPT_URL, $domain . "/api/registration.json");
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -350,8 +373,7 @@ EOD;
         return $json_result;
     }
 
-    public function onAfterOrderCreate(&$order, &$send_email)
-    {
+    public function onAfterOrderCreate(&$order, &$send_email) {
         $input = JFactory::getApplication()->input;
         $task = $input->getCmd('task', '');
         $ctrl = $input->getCmd('ctrl', '');
@@ -366,7 +388,8 @@ EOD;
                             (function(w, c) {
                                 w[c] = w[c] || [];
                                 w[c].push(function(getSale) {
-                                    getSale.event('success-order')
+                                    getSale.event('success-order');
+                                    console.log('success-order');
                                 });
                             })(window, 'getSaleCallbacks');
                           })";
