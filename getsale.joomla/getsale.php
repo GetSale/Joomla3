@@ -27,7 +27,6 @@ class plgSystemGetsale extends JPlugin {
     public $VMDelFromCartSelector = '.vm2-remove_from_cart';
     public $VMCatViewSelector = 'div.category-view';
     public $jsCode2 = <<<EOD
-    (function () {
 jQuery(document).ready(function () {
     //hikashop
     //////cat-view
@@ -219,7 +218,6 @@ if (getsale_add && getsale_add == 'Y') {
     })(window, 'getSaleCallbacks');
     document.cookie = 'GETSALE_ADD=N; path=/;';
 }
-})();
 /* GETSALE CODE END */
 EOD;
 
@@ -255,14 +253,14 @@ EOD;
         //проверка на успешно авторизированный проект
         if ($this->isAdmin) {
             if (strlen($this->projectId) > 0) {
-                JFactory::getDocument()->addScriptDeclaration('(function () {   window.getsale_succes_reg = true;})();');
-                JFactory::getDocument()->addScriptDeclaration('(function () {   window.getsale_id = ' . $this->projectId . ';})();');
+                JFactory::getDocument()->addScriptDeclaration('window.getsale_succes_reg = true;');
+                JFactory::getDocument()->addScriptDeclaration('window.getsale_id = ' . $this->projectId . ';');
 
             } else {
                 if (isset($id->code)) {
-                    JFactory::getDocument()->addScriptDeclaration('(function () {   window.getsale_succes_reg = false;window.getsale_reg_error = "' . $id->code . '";})();');
+                    JFactory::getDocument()->addScriptDeclaration('window.getsale_succes_reg = false;window.getsale_reg_error = ' . $id->code . ';');
                 } elseif (empty($id)) {
-                    JFactory::getDocument()->addScriptDeclaration('(function () {   window.getsale_succes_reg = false;window.getsale_reg_error = "0";})();');
+                    JFactory::getDocument()->addScriptDeclaration('window.getsale_succes_reg = false;window.getsale_reg_error = 0;');
                 }
             }
         }
@@ -295,7 +293,6 @@ EOD;
         if ((strlen($this->projectId) > 0) && (!$this->isAdmin)) {
             return '
             /* GETSALE CODE START */
-
             (function(d, w, c) {
                   w[c] = {
                     projectId:' . $this->projectId . '
