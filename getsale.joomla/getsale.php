@@ -151,12 +151,16 @@ jQuery(document).ready(function () {
 
     //virtuemart
     jQuery('input.addtocart-button').click(function () {
-        getSale.event('add-to-cart');
-        console.log('add-to-cart');
+//        getSale.event('add-to-cart');
+//        console.log('add-to-cart');
+        document.cookie = 'GETSALE_ADD=Y; path=/;';
+
     });
     jQuery('.vm2-remove_from_cart').click(function () {
-        getSale.event('del-from-cart');
-        console.log('del-from-cart');
+//        getSale.event('del-from-cart');
+//        console.log('del-from-cart');
+        document.cookie = 'GETSALE_DEL=Y; path=/;';
+
     });
 
     jQuery('button#checkoutFormSubmit[name=confirm]').each(function () {
