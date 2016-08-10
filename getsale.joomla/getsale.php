@@ -151,14 +151,10 @@ jQuery(document).ready(function () {
 
     //virtuemart
     jQuery('input.addtocart-button').click(function () {
-//        getSale.event('add-to-cart');
-//        console.log('add-to-cart');
         document.cookie = 'GETSALE_ADD=Y; path=/;';
 
     });
     jQuery('.vm2-remove_from_cart').click(function () {
-//        getSale.event('del-from-cart');
-//        console.log('del-from-cart');
         document.cookie = 'GETSALE_DEL=Y; path=/;';
 
     });
@@ -224,7 +220,7 @@ if (getsale_add && getsale_add == 'Y') {
 } else {
     document.cookie = 'GETSALE_ADD=N; path=/;';
 }
-var getsale_del = getsalegetCookie('GETSALE_DEl');
+var getsale_del = getsalegetCookie('GETSALE_DEL');
 if (getsale_del && getsale_del == 'Y') {
     (function (w, c) {
         w[c] = w[c] || [];
