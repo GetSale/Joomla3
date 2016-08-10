@@ -118,14 +118,14 @@ jQuery(document).ready(function () {
     });
 
     jQuery("a[href*='/cart/delete']").each(function () {
-        var my_funct = "getSale.event('del-from-cart'); console.log('del-from-cart');";
+        var my_funct = "document.cookie = \"GETSALE_DEL=Y; path=/;\";";
         if (jQuery(this).attr('onclick')) {
             jQuery(this).attr('onclick', my_funct + jQuery(this).attr('onclick'));
         } else jQuery(this).attr('onclick', my_funct);
     });
 
     jQuery("a[href*='/korzina/delete']").each(function () {
-        var my_funct = "getSale.event('del-from-cart'); console.log('del-from-cart');";
+        var my_funct = "document.cookie = \"GETSALE_DEL=Y; path=/;\";";
         if (jQuery(this).attr('onclick')) {
             jQuery(this).attr('onclick', my_funct + jQuery(this).attr('onclick'));
         } else jQuery(this).attr('onclick', my_funct);
@@ -217,6 +217,21 @@ if (getsale_add && getsale_add == 'Y') {
         });
     })(window, 'getSaleCallbacks');
     document.cookie = 'GETSALE_ADD=N; path=/;';
+} else {
+    document.cookie = 'GETSALE_ADD=N; path=/;';
+}
+var getsale_del = getsalegetCookie('GETSALE_DEl');
+if (getsale_del && getsale_del == 'Y') {
+    (function (w, c) {
+        w[c] = w[c] || [];
+        w[c].push(function (getSale) {
+            getSale.event('del-from-cart');
+            console.log('del-from-cart');
+        });
+    })(window, 'getSaleCallbacks');
+    document.cookie = 'GETSALE_DEL=N; path=/;';
+} else {
+    document.cookie = 'GETSALE_DEL=N; path=/;';
 }
 /* GETSALE CODE END */
 EOD;
