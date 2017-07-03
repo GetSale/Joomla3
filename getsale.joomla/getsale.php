@@ -1,10 +1,10 @@
 <?php
 /**
- * @version     1.0.0
+ * @version     1.1
  * @Project     GetSale
  * @author      GetSale Team
  * @package
- * @copyright   Copyright (C) 2016 getsale.io. All rights reserved.
+ * @copyright   Copyright (C) 2017 getsale.io. All rights reserved.
  * @license     GNU/GPL: http://www.gnu.org/copyleft/gpl.html
  */
 
@@ -249,54 +249,12 @@ EOD;
         $this->app_key = $this->params->get('app_key', '');
         $this->email = $this->params->get('email', '');
         $this->projectId = $this->params->get('getsale_id', '');
-        $this->url = $this->currentUrl();
+        $this->url = JUri::root();
 
-        //check and try to reg
-        if (($this->email !== '') && ($this->app_key !== '') && empty($this->projectId)) {
-            $id = $this->getsale_reg();
-            if (isset($id->payload->projectId)) {
-                $this->projectId = $id->payload->projectId;
-                $this->params->set('getsale_id', $id->payload->projectId);
-            }
-        }
         if (strlen($this->projectId) > 0) {
             JFactory::getDocument()->addScriptDeclaration($this->getjsCode());
             JFactory::getDocument()->addScriptDeclaration($this->jsCode2);
         }
-
-        //проверка на успешно авторизированный проект
-        if ($this->isAdmin) {
-            if (strlen($this->projectId) > 0) {
-                JFactory::getDocument()->addScriptDeclaration('window.getsale_succes_reg = true;');
-                JFactory::getDocument()->addScriptDeclaration('window.getsale_id = ' . $this->projectId . ';');
-
-            } else {
-                if (isset($id->code)) {
-                    JFactory::getDocument()->addScriptDeclaration('window.getsale_succes_reg = false;window.getsale_reg_error = ' . $id->code . ';');
-                } elseif (empty($id)) {
-                    JFactory::getDocument()->addScriptDeclaration('window.getsale_succes_reg = false;window.getsale_reg_error = 0;');
-                }
-            }
-        }
-    }
-
-    /**
-     * Возвращает url
-     */
-    public function currentUrl() {
-        $url = 'http';
-        if (isset($_SERVER['HTTPS'])) {
-            if ($_SERVER['HTTPS'] == 'on') {
-                $url .= 's';
-            }
-        }
-        $url .= '://';
-        if ($_SERVER['SERVER_PORT'] != '80') {
-            $url .= $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'];
-        } else {
-            $url .= $_SERVER['SERVER_NAME'];
-        }
-        return $url;
     }
 
     /** Main script
@@ -325,7 +283,41 @@ EOD;
         } else return;
     }
 
-    public function onBeforeRender() {
+    /** Joomla system event
+     */
+    public function onAfterDispatch() {
+        $app = JFactory::getApplication();
+
+        if (empty($this->projectId)) {
+            JError::raiseError(100, 'GetSale: Plugin is not installed!');
+        }
+        if ($app->getName() != 'site') {
+            //check and try to reg
+            if (($this->email !== '') && ($this->app_key !== '') && empty($this->projectId)) {
+                $id = $this->getsale_reg();
+                if (isset($id->payload->projectId)) {
+                    $this->projectId = $id->payload->projectId;
+                    $this->params->set('getsale_id', $id->payload->projectId);
+                }
+            }
+
+            //проверка на успешно авторизированный проект
+            if ($this->isAdmin) {
+                if (strlen($this->projectId) > 0) {
+                    JFactory::getDocument()->addScriptDeclaration('window.getsale_succes_reg = true;');
+                    JFactory::getDocument()->addScriptDeclaration('window.getsale_id = ' . $this->projectId . ';');
+
+                }
+                else {
+                    if (isset($id->code)) {
+                        JFactory::getDocument()->addScriptDeclaration('window.getsale_succes_reg = false;window.getsale_reg_error = ' . $id->code . ';');
+                    }
+                    elseif (empty($id)) {
+                        JFactory::getDocument()->addScriptDeclaration('window.getsale_succes_reg = false;window.getsale_reg_error = 0;');
+                    }
+                }
+            }
+        }
     }
 
     public function onContentPrepare($context, &$article, &$params, $page = 0) {
