@@ -2,7 +2,7 @@
 
 Tags: getsale, popup, popups  
 Requires at least: 3.x  
-Tested up to: 3.3.3  
+Tested up to: 3.7.2  
 Stable tag: 1.0.0  
 License: GNU General Public License, version 3  
 
@@ -97,7 +97,7 @@ GetSale поможет вашему сайту нарастить контакт
 ## Изменения
 
 #### 1.0.1
-* Небольшие исправления
+* Minor fix
 
 #### 1.0.0
 * Релиз

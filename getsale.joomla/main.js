@@ -23,6 +23,8 @@ jQuery(document).ready(function () {
 
     if ((jQuery('#jform_params_app_key').val() !== '') && (jQuery('#jform_params_email').val() !== '')) {
         if (window.getsale_succes_reg == true && jQuery('#jform_params_getsale_id').val() !== '') {
+            jQuery('#jform_params_app_key').attr('disabled', 'disabled');
+            jQuery('#jform_params_email').attr('disabled', 'disabled');
             jQuery('#jform_params_app_key').after('<img title="Введен правильный ключ!" class="gtsl_ok" src="../plugins/system/getsale/ok.png">');
             jQuery('#jform_params_email').after('<img title="Введен правильный email!" class="gtsl_ok" src="../plugins/system/getsale/ok.png">');
             jQuery('[id=jform_params_app_key-lbl]').parent().parent().after(success_text + support_text);
@@ -31,21 +33,25 @@ jQuery(document).ready(function () {
             Joomla.submitbutton('plugin.apply');
         } else if (window.getsale_succes_reg == false) {
             jQuery('[id=jform_params_app_key-lbl]').parent().parent().after(text_after + support_text);
-            if (window.getsale_reg_error == 403) {
-                jQuery('.alert.alert-success').hide();
-                var error_text = 'Неверно введен Email или ключ API.';
-            }
-            if (window.getsale_reg_error == 500) {
-                jQuery('.alert.alert-success').hide();
-                var error_text = 'Данный сайт уже используется в другом аккаунте на сайте <a href="https://getsale.io">GetSale</a>';
-            }
-            if (window.getsale_reg_error == 404) {
-                jQuery('.alert.alert-success').hide();
-                var error_text = 'Данный Email не зарегистрирован на сайте <a href="https://getsale.io">GetSale</a>';
-            }
-            if (window.getsale_reg_error == 0) {
-                jQuery('.alert.alert-success').hide();
-                var error_text = 'Ответ от <a href="https://getsale.io">GetSale</a> не был получен. Проверьте ваше соединение с интернетом, или обратитесь в Cлужбу технической поддержки: <a href="mailto:support@getsale.io">support@getsale.io</a>';
+            switch (window.getsale_reg_error) {
+                case 403:
+                    jQuery('.alert.alert-success').hide();
+                    var error_text = 'Неверно введен Email или ключ API.';
+                    break;
+                case 404:
+                    jQuery('.alert.alert-success').hide();
+                    var error_text = 'Данный Email не зарегистрирован на сайте <a href="https://getsale.io">GetSale</a>';
+                    break;
+                case 500:
+                    jQuery('.alert.alert-success').hide();
+                    var error_text = 'Данный сайт уже используется в другом аккаунте на сайте <a href="https://getsale.io">GetSale</a>';
+                    break;
+                case 0:
+                    jQuery('.alert.alert-success').hide();
+                    var error_text = 'Ответ от <a href="https://getsale.io">GetSale</a> не был получен. Проверьте ваше соединение с интернетом, или обратитесь в Cлужбу технической поддержки: <a href="mailto:support@getsale.io">support@getsale.io</a>';
+                    break;
+                default:
+                    break;
             }
             var gtsl_btn_html = '<div style="width:100%;margin-top: 20px;">' +
                 '<button style="float:left;" id="gtsl_auth_btn" onclick="formCheck(); return false;"> Авторизация </button>' +

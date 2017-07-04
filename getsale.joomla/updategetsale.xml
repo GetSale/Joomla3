@@ -16,7 +16,7 @@
 				<maintainer>GetSale</maintainer>
 				<maintainerurl>https://getsale.io/</maintainerurl>
 				<section>Updates</section>
-				<targetplatform name="joomla" version="3.7" />
+				<targetplatform name="joomla" version="3.6" />
 				<client>0</client>
 				<folder>system</folder>
 			</update>
