@@ -2,7 +2,7 @@
 <extension version="3.0" type="plugin" group="system" method="upgrade">
     <name>GetSale</name>
     <author>GetSale Team</author>
-    <creationDate>03.09.2017</creationDate>
+    <creationDate>04.09.2017</creationDate>
     <copyright>(C) 2017 by GetSale Team (https://getsale.io)</copyright>
     <license>GNU/GPL: http://www.gnu.org/copyleft/gpl.html</license>
     <authorEmail>support@getsale.io</authorEmail>

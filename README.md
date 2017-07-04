@@ -2,8 +2,8 @@
 
 Tags: getsale, popup, popups  
 Requires at least: 3.x  
-Tested up to: 3.3.3  
-Stable tag: 1.0.0  
+Tested up to: 3.7.2  
+Stable tag: 1.0.1  
 License: GNU General Public License, version 3  
 
 **GetSale** &mdash; профессиональный инструмент для создания popup-окон.
@@ -97,7 +97,8 @@ GetSale поможет вашему сайту нарастить контакт
 ## Изменения
 
 #### 1.0.1
-* Небольшие исправления
+* Добавлен сервер обновлений плагина
+* Minor fix
 
 #### 1.0.0
 * Релиз
