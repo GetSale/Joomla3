@@ -56,7 +56,7 @@
     </config>
     <updateservers>
         <server type="extension" priority="1" name="GetSale">
-            https://getsale.io/
+            https://raw.githubusercontent.com/GetSale/Joomla3/master/getsale.joomla/updategetsale.xml
         </server>
     </updateservers>
 </extension>

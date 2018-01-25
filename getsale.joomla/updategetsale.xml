@@ -2,7 +2,7 @@
 <updates>
 			<update>
 				<name>getsale</name>
-				<description>getsale upsates</description>
+				<description>getsale</description>
 				<element>getsale</element>
 				<type>plugin</type>
 				<version>1.0.2</version>
@@ -14,9 +14,9 @@
 					<tag>stable</tag>
 				</tags>
 				<maintainer>GetSale</maintainer>
-				<maintainerurl>https://getsale.io/plugins/joomla3/</maintainerurl>
+				<maintainerurl>https://getsale.io/</maintainerurl>
 				<section>Updates</section>
-				<targetplatform name="joomla" version="3.6" />
+				<targetplatform name="joomla" version="3.8" />
 				<client>0</client>
 				<folder>system</folder>
 			</update>
