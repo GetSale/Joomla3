@@ -23,8 +23,6 @@ jQuery(document).ready(function () {
 
     if ((jQuery('#jform_params_app_key').val() !== '') && (jQuery('#jform_params_email').val() !== '')) {
         if (window.getsale_succes_reg == true && jQuery('#jform_params_getsale_id').val() !== '') {
-            jQuery('#jform_params_app_key').attr('disabled', 'disabled');
-            jQuery('#jform_params_email').attr('disabled', 'disabled');
             jQuery('#jform_params_app_key').after('<img title="Введен правильный ключ!" class="gtsl_ok" src="../plugins/system/getsale/ok.png">');
             jQuery('#jform_params_email').after('<img title="Введен правильный email!" class="gtsl_ok" src="../plugins/system/getsale/ok.png">');
             jQuery('[id=jform_params_app_key-lbl]').parent().parent().after(success_text + support_text);

@@ -3,11 +3,11 @@
     <name>GetSale</name>
     <author>GetSale Team</author>
     <creationDate>04.09.2017</creationDate>
-    <copyright>(C) 2017 by GetSale Team (https://getsale.io)</copyright>
+    <copyright>(C) 2018 by GetSale Team (https://getsale.io)</copyright>
     <license>GNU/GPL: http://www.gnu.org/copyleft/gpl.html</license>
     <authorEmail>support@getsale.io</authorEmail>
     <authorUrl>https://getsale.io</authorUrl>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <description>
         <![CDATA[
 <link rel="stylesheet" type="text/css" href="/plugins/system/getsale/style.css">

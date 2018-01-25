@@ -280,7 +280,8 @@ EOD;
                     d.addEventListener("DOMContentLoaded", f, false);
                   } else { f(); }
                 })(document, window, "getSaleInit");' . $this->int_scrpt;
-        } else return;
+        }
+        else return;
     }
 
     /** Joomla system event
@@ -324,8 +325,8 @@ EOD;
     }
 
     public function onContentBeforeDisplay($context, &$product, &$params, $page = 0) {
-        if ($context != 'com_virtuemart.productdetails') return;
-
+        if ($context != 'com_virtuemart.productdetails')
+            return;
         $this->productView();
     }
 
