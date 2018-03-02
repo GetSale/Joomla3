@@ -288,10 +288,7 @@ EOD;
      */
     public function onAfterDispatch() {
         $app = JFactory::getApplication();
-
-        if (empty($this->projectId)) {
-            JError::raiseError(100, 'GetSale: Plugin is not installed!');
-        }
+        
         if ($app->getName() != 'site') {
             //check and try to reg
             if (($this->email !== '') && ($this->app_key !== '') && empty($this->projectId)) {
